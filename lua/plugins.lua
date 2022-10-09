@@ -100,11 +100,6 @@ packer.startup(function(use)
     config = util.get_config("goto-preview")
   }
   use {
-    "simrat39/symbols-outline.nvim",
-    config = function() require("symbols-outline").setup() end,
-    cmd = "SymbolsOutline"
-  }
-  use {
     "stevearc/aerial.nvim",
     requires = "nvim-treesitter/nvim-treesitter",
     config = function() require("aerial").setup() end,
