@@ -1,6 +1,4 @@
 local util = require("util")
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 local ensure_packer = function()
   local fn = vim.fn
@@ -36,7 +34,6 @@ packer.startup(function(use)
   use { "neovim/nvim-lspconfig", config = util.get_config("nvim-lspconfig") }
   use {
     "nvim-telescope/telescope.nvim",
-    config = util.get_config("telescope"),
     requires = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
@@ -44,7 +41,7 @@ packer.startup(function(use)
       "cljoly/telescope-repo.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     },
-    cmd = "Telescope"
+    config = util.get_config("telescope")
   }
   use { "ahmedkhalf/project.nvim", config = function() require("project_nvim").setup() end }
   use { "mcauley-penney/tidy.nvim", config = function() require("tidy").setup() end }
@@ -56,7 +53,7 @@ packer.startup(function(use)
     },
     config = util.get_config("feline")
   }
-  use { "famiu/bufdelete.nvim", cmd = "Bwipeout" }
+  use { "famiu/bufdelete.nvim", cmd = { "Bwipeout", "Bwipeout!" } }
   use {
     "nvim-treesitter/nvim-treesitter",
     config = util.get_config("nvim-treesitter"),
@@ -85,17 +82,23 @@ packer.startup(function(use)
     "hrsh7th/nvim-cmp",
     requires = {
       "neovim/nvim-lspconfig",
-      "hrsh7th/vim-vsnip",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-omni",
       "hrsh7th/cmp-path",
-      "kdheepak/cmp-latex-symbols"
+      "kdheepak/cmp-latex-symbols",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lua"
     },
     config = util.get_config("nvim-cmp")
   }
   use {"onsails/lspkind.nvim", config = util.get_config("lspkind") }
-  use { "rmagatti/goto-preview", config = util.get_config("goto-preview") }
+  use {
+    "rmagatti/goto-preview",
+    requires = "nvim-telescope/telescope.nvim",
+    config = util.get_config("goto-preview")
+  }
   use {
     "simrat39/symbols-outline.nvim",
     config = function() require("symbols-outline").setup() end,
@@ -107,7 +110,7 @@ packer.startup(function(use)
     config = function() require("aerial").setup() end,
     cmd = "AerialToggle"
   }
-  use { "tami5/lspsaga.nvim", config = util.get_config("lspsaga"), cmd = "Lspsaga" }
+  use { "glepnir/lspsaga.nvim", config = util.get_config("lspsaga"), cmd = "Lspsaga" }
   use {
     "mrjones2014/legendary.nvim",
     requires = "stevearc/dressing.nvim",
@@ -143,11 +146,12 @@ packer.startup(function(use)
       "SmiteshP/nvim-navic",
       "kyazdani42/nvim-web-devicons"
     },
-    config = function() require("barbecue").setup() end
+    config = function() require("barbecue").setup({}) end
   }
   use { "numToStr/Comment.nvim", config = function() require('Comment').setup() end }
   use { "ethanholz/nvim-lastplace", config = function() require("nvim-lastplace").setup() end }
   use { "folke/trouble.nvim", config = util.get_config("trouble") }
+  use "Issafalcon/lsp-overloads.nvim"
 
   -- TODO: Replace with Lua alternatives
   use "wellle/targets.vim"
@@ -158,7 +162,6 @@ packer.startup(function(use)
   use "alvan/vim-closetag"
   use "tpope/vim-eunuch"
   use "neomutt/neomutt.vim"
-  use "hrsh7th/vim-vsnip"
   use { "voldikss/vim-floaterm", config = util.get_config("floaterm"), cmd = "FloatermNew" }
 
   -- TODO: Try these out

@@ -32,6 +32,10 @@ cmd("filetype", {
 local html = group("ft_html", group_opts)
 cmd("filetype", { pattern = "html", command = [[setl foldmethod=indent]], group = html })
 
+-- JavaScript
+local js = group("ft_javascript", group_opts)
+cmd("bufwritepre", { pattern = "*.js,*.jsx", command = "EsLintFixAll", group = js })
+
 -- JSON
 local json = group("ft_json", group_opts)
 cmd("filetype", { pattern = "json", command = [[setl foldmethod=syntax]], group = json })
@@ -42,21 +46,6 @@ cmd("bufwritepre", { pattern = "*.jl", callback = vim.lsp.buf.formatting_sync, g
 cmd("filetype", {
   pattern = "julia",
   command = [[setl foldmethod=indent nofoldenable sw=4 et tw=100]],
-  group = julia
-})
-cmd("filetype", {
-  pattern = "julia",
-  callback = function()
-  require("lspconfig").julials.setup({
-    on_attach = util.lsp_attach,
-    on_new_config = function(new_config, _)
-        local julia = vim.fn.expand("~/.data/julia/environments/nvim-lspconfig/bin/julia")
-        if require("lspconfig").util.path.is_file(julia) then
-            new_config.cmd[1] = julia
-         end
-    end
-  })
-  end,
   group = julia
 })
 cmd("filetype", {
@@ -77,29 +66,9 @@ cmd({"bufnewfile", "buffilepre", "bufread" }, {
   pattern = "*.md", command = [[setl filetype=markdown.pandoc foldlevel=1]], group = markdown
 })
 
--- Shell
-local shell = group("ft_shell", group_opts)
-cmd("filetype", {
-  pattern = "sh",
-  callback = function()
-    require("lspconfig").bashls.setup({
-      on_attach = util.lsp_attach,
-    })
-  end,
-  group = shell
-})
-
--- Tex
-local tex = group("ft_tex", group_opts)
-cmd("filetype", {
-  pattern = "tex",
-  callback = function()
-    require("lspconfig").texlab.setup({
-      on_attach = util.lsp_attach,
-    })
-  end,
-  group = shell
-})
+-- TypeScript
+local typescript = group("ft_typescript", group_opts)
+cmd("bufwritepre", { pattern = "*.ts,*.tsx", command = "EsLintFixAll", group = typescript })
 
 -- Vim
 local vim_options = group("vim_options", group_opts)

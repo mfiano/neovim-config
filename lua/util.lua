@@ -17,6 +17,9 @@ M.lsp_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     require("nvim-navic").attach(client, bufnr)
   end
+  if client.server_capabilities.signatureHelpProvider then
+    require("lsp-overloads").setup(client, {})
+  end
 end
 
 M.julia_repl_cmd = function()

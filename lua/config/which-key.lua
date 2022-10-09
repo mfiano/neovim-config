@@ -8,6 +8,8 @@ local visual_map = {
   }
 }
 local normal_map = {
+  gd = { "go to definition" },
+  gr = { "go to references" },
   ["<leader>"] = {
     ["<leader>"] = { ":Legendary keymaps<cr>", "legend" },
     ["'"] = { ":Telescope resume<cr>", "resume search"},
@@ -35,6 +37,7 @@ local normal_map = {
       R = { ":Rename ", "rename file" },
       s = { ":w!<cr>", "save" },
       S = { ":SudoWrite<cr>", "sudo save" },
+      v = { ":e $MYVIMRC<cr>", "edit vim config" },
     },
     g = {
       name = "git",

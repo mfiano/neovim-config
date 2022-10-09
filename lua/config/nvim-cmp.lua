@@ -4,8 +4,8 @@ local util = require("util")
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
+      require("luasnip").lsp_expand(args.body)
+    end
   },
   completion = { autocomplete = false },
   mapping = cmp.mapping.preset.insert({
@@ -38,6 +38,7 @@ cmp.setup({
     { name = 'omni' },
     { name = 'path' },
     { name = 'latex_symbols' },
+    { name = 'nvim_lua' }
   }
 })
 
