@@ -105,7 +105,6 @@ packer.startup(function(use)
     config = function() require("aerial").setup() end,
     cmd = "AerialToggle"
   }
-  use { "glepnir/lspsaga.nvim", config = util.get_config("lspsaga"), cmd = "Lspsaga" }
   use {
     "mrjones2014/legendary.nvim",
     requires = "stevearc/dressing.nvim",

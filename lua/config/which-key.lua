@@ -48,8 +48,6 @@ local normal_map = {
     },
     l = {
       name = "language",
-      ea = { ":Lspsaga code_action<cr>", "code actions" },
-      er = { ":Lspsaga rename<cr>", "rename" },
       oc = { ":AerialToggle<cr>", "code outline" },
       rr = { ":LspRestart<cr>", "restart LSP" },
       rs = { ":LspStart<cr>", "start LSP" },
