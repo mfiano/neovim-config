@@ -28,7 +28,7 @@ local normal_map = {
     },
     f = {
       name = "file",
-      D = { ":Delete!<cr>", "delete file" },
+      D = { ":Remove! | :Bwipeout!<cr>", "delete file" },
       f = { ":Telescope find_files<cr>", "find file (hidden)" },
       F = { ":Telescope find_files hidden=true<cr>", "find file (hidden)" },
       h = { ":Telescope find_files cwd=~<cr>", "find in home" },
