@@ -45,7 +45,7 @@ local julia = group("ft_julia", group_opts)
 cmd("bufwritepre", { pattern = "*.jl", callback = vim.lsp.buf.formatting_sync, group = julia })
 cmd("filetype", {
   pattern = "julia",
-  command = [[setl foldmethod=indent nofoldenable sw=4 et tw=100]],
+  command = [[setl sw=4 et tw=100]],
   group = julia
 })
 cmd("filetype", {
