@@ -46,7 +46,7 @@ map("v", ">", ">gv", opts)
 map("x", "<a-up>", "'<-2<cr>gv-gv", opts)
 map("x", "<a-down>", "'>+1<cr>gv-gv", opts)
 
-map("t", "<f13>", [[<c-\><c-n>]], opts)
+map("t", "\\\\", [[<c-\><c-n>]], opts)
 
 map({"n", "v"}, "<tab>", "za", opts)
 map({"n", "i"}, "<f1>", "")
