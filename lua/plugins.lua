@@ -144,7 +144,6 @@ packer.startup(function(use)
   }
   use { "numToStr/Comment.nvim", config = function() require('Comment').setup() end }
   use { "ethanholz/nvim-lastplace", config = function() require("nvim-lastplace").setup() end }
-  use { "folke/trouble.nvim", config = util.get_config("trouble") }
   use "Issafalcon/lsp-overloads.nvim"
 
   -- TODO: Replace with Lua alternatives
