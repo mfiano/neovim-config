@@ -33,10 +33,10 @@ cmp.setup({
     end, { 'i', 's' })
   }),
   sources = {
-    { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'omni' },
     { name = 'path' },
+    { name = 'nvim_lsp' },
     { name = 'latex_symbols' },
     { name = 'nvim_lua' }
   }
