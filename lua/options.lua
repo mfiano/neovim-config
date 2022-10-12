@@ -46,6 +46,7 @@ opt.smartcase = true
 opt.smartindent = true
 opt.smarttab = true
 opt.softtabstop = 2
+opt.spell = true
 opt.splitbelow = true
 opt.splitright = true
 opt.swapfile = false
