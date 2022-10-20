@@ -9,28 +9,8 @@ require("lspconfig").bashls.setup({
   on_attach = util.lsp_attach,
 })
 
--- CSS
-require("lspconfig").cssls.setup({
-  on_attach = util.lsp_attach,
-})
-
 -- GLSL
 require("lspconfig").glslls.setup({
-  on_attach = util.lsp_attach,
-})
-
--- HTML
-require("lspconfig").html.setup({
-  on_attach = util.lsp_attach,
-})
-
--- JavaScript/TypeScript
-require("lspconfig").eslint.setup({
-  on_attach = util.lsp_attach,
-})
-
--- JSON
-require("lspconfig").jsonls.setup({
   on_attach = util.lsp_attach,
 })
 
@@ -57,17 +37,7 @@ require("lspconfig").sumneko_lua.setup {
   },
 }
 
--- Markdown
-require("lspconfig").marksman.setup({
-  on_attach = util.lsp_attach,
-})
-
 -- TeX
 require("lspconfig").texlab.setup({
-  on_attach = util.lsp_attach,
-})
-
--- YAML
-require("lspconfig").yamlls.setup({
   on_attach = util.lsp_attach,
 })

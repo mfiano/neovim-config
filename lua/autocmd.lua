@@ -32,10 +32,6 @@ cmd("filetype", {
 local html = group("ft_html", group_opts)
 cmd("filetype", { pattern = "html", command = [[setl foldmethod=indent]], group = html })
 
--- JavaScript
-local js = group("ft_javascript", group_opts)
-cmd("bufwritepre", { pattern = "*.js,*.jsx", command = "EsLintFixAll", group = js })
-
 -- JSON
 local json = group("ft_json", group_opts)
 cmd("filetype", { pattern = "json", command = [[setl foldmethod=syntax]], group = json })
@@ -66,9 +62,8 @@ cmd({"bufnewfile", "buffilepre", "bufread" }, {
   pattern = "*.md", command = [[setl filetype=markdown.pandoc foldlevel=1]], group = markdown
 })
 
--- TypeScript
-local typescript = group("ft_typescript", group_opts)
-cmd("bufwritepre", { pattern = "*.ts,*.tsx", command = "EsLintFixAll", group = typescript })
+-- Rust
+local rust = group("ft_rust", group_opts)
 
 -- Vim
 local vim_options = group("vim_options", group_opts)

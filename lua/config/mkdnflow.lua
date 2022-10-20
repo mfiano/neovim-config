@@ -1,4 +1,4 @@
-require('mkdnflow').setup({
+require("mkdnflow").setup{
   modules = {
     bib = false
   },
@@ -14,27 +14,27 @@ require('mkdnflow').setup({
     implicit_extension = "md"
   },
   mappings = {
-    MkdnEnter = {{'n', 'v'}, '<cr>'},
+    MkdnEnter = {{"n", "v"}, "<cr>"},
     MkdnTab = false,
     MkdnSTab = false,
-    MkdnNextLink = {'n', '>>'},
-    MkdnPrevLink = {'n', '<<'},
-    MkdnNextHeading = {'n', ']]'},
-    MkdnPrevHeading = {'n', '[['},
-    MkdnGoBack = {'n', '<a-left>'},
-    MkdnGoForward = {'n', '<a-right>'},
+    MkdnNextLink = {"n", ">>"},
+    MkdnPrevLink = {"n", "<<"},
+    MkdnNextHeading = {"n", "]]"},
+    MkdnPrevHeading = {"n", "[["},
+    MkdnGoBack = {"n", "<a-left>"},
+    MkdnGoForward = {"n", "<a-right>"},
     MkdnFollowLink = false,
-    MkdnDestroyLink = {'n', '<m-cr>'},
-    MkdnTagSpan = {'v', '<m-cr>'},
-    MkdnMoveSource = {'n', '<f2>'},
-    MkdnYankAnchorLink = {'n', 'ya'},
-    MkdnYankFileAnchorLink = {'n', 'yfa'},
-    MkdnIncreaseHeading = {'n', '+'},
-    MkdnDecreaseHeading = {'n', '-'},
-    MkdnToggleToDo = {{'n', 'v'}, '<c-space>'},
+    MkdnDestroyLink = {"n", "<m-cr>"},
+    MkdnTagSpan = {"v", "<m-cr>"},
+    MkdnMoveSource = {"n", "<f2>"},
+    MkdnYankAnchorLink = {"n", "ya"},
+    MkdnYankFileAnchorLink = {"n", "yfa"},
+    MkdnIncreaseHeading = {"n", "-"},
+    MkdnDecreaseHeading = {"n", "+"},
+    MkdnToggleToDo = {{"n", "v"}, "<c-cr>"},
     MkdnNewListItem = false,
-    MkdnNewListItemBelowInsert = {'n', 'o'},
-    MkdnNewListItemAboveInsert = {'n', 'O'},
+    MkdnNewListItemBelowInsert = {"n", "o"},
+    MkdnNewListItemAboveInsert = {"n", "O"},
     MkdnExtendList = false,
     MkdnUpdateNumbering = false,
     MkdnTableNextCell = false,
@@ -48,4 +48,4 @@ require('mkdnflow').setup({
     MkdnFoldSection = false,
     MkdnUnfoldSection = false
   }
-})
+}

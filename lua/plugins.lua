@@ -2,10 +2,10 @@ local util = require("util")
 
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({
-      'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path
+      "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path
     })
     vim.cmd [[packadd packer.nvim]]
     return true
@@ -57,7 +57,7 @@ packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     config = util.get_config("nvim-treesitter"),
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end
+    run = function() require("nvim-treesitter.install").update({ with_sync = true }) end
   }
   use "ryanoasis/vim-devicons"
   use "kyazdani42/nvim-web-devicons"
@@ -83,6 +83,7 @@ packer.startup(function(use)
     requires = {
       "neovim/nvim-lspconfig",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-omni",
       "hrsh7th/cmp-path",
@@ -108,7 +109,7 @@ packer.startup(function(use)
   use {
     "mrjones2014/legendary.nvim",
     requires = "stevearc/dressing.nvim",
-    config = function() require('legendary').setup() end,
+    config = function() require("legendary").setup() end,
     cmd = "Legendary"
   }
   use { "rktjmp/highlight-current-n.nvim", config = util.get_config("highlight-current-n") }
@@ -132,7 +133,7 @@ packer.startup(function(use)
     config = util.get_config("bookmarks")
   }
   use "jghauser/mkdir.nvim"
-  use { "jakewvincent/mkdnflow.nvim", config = util.get_config("mkdnflow"), ft = "markdown" }
+  use { "jakewvincent/mkdnflow.nvim", config = util.get_config("mkdnflow"), ft = "markdown.pandoc" }
   use "SmiteshP/nvim-navic"
   use {
     "utilyre/barbecue.nvim",
@@ -142,11 +143,27 @@ packer.startup(function(use)
     },
     config = function() require("barbecue").setup({}) end
   }
-  use { "numToStr/Comment.nvim", config = function() require('Comment').setup() end }
+  use {
+    "simrat39/rust-tools.nvim",
+    requires = { "neovim/nvim-lspconfig" },
+    config = util.get_config("rust-tools")
+  }
+  use { "numToStr/Comment.nvim", config = function() require("Comment").setup() end }
   use { "ethanholz/nvim-lastplace", config = function() require("nvim-lastplace").setup() end }
   use "Issafalcon/lsp-overloads.nvim"
+  use { "folke/trouble.nvim", config = util.get_config("trouble") }
+  use { "jose-elias-alvarez/null-ls.nvim", config = util.get_config("null-ls") }
+  use { "windwp/nvim-autopairs", config = util.get_config("nvim-autopairs") }
+  use { "RRethy/vim-illuminate", config = function() require("illuminate").configure() end }
+  use {
+    "m-demare/hlargs.nvim",
+    config = function() require("hlargs").setup() end,
+    requires = { "nvim-treesitter/nvim-treesitter" }
+  }
 
   -- TODO: Replace with Lua alternatives
+  use "puremourning/vimspector"
+  use "ron-rs/ron.vim"
   use "wellle/targets.vim"
   use "tpope/vim-repeat"
   use "chaoren/vim-wordmotion"

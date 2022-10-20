@@ -1,4 +1,5 @@
 require("nvim-treesitter.configs").setup {
+  auto_install = true,
   ensure_installed = {
     "bash",
     "c",
@@ -18,13 +19,16 @@ require("nvim-treesitter.configs").setup {
     "make",
     "markdown",
     "regex",
+    "rust",
     "scheme",
     "typescript",
     "toml",
     "yaml"
   },
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting=false,
   },
-  autopairs = { enable = true },
+  ident = { enable = true },
+  autopairs = { enable = true }
 }
