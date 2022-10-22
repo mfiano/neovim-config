@@ -1,8 +1,8 @@
-local util = require("util")
+local util = require("lib/util")
 local map = vim.keymap.set
 local opts = { silent = true }
 
-local imap = function(shortcut, command)
+local function imap(shortcut, command)
   return vim.api.nvim_set_keymap("i", shortcut, command, { noremap = false, silent = true })
 end
 
@@ -35,7 +35,6 @@ map("n", "-", ":wincmd =<cr>", opts)
 map("n", "n", "<plug>(highlight-current-n-n)", opts)
 map("n", "N", "<plug>(highlight-current-n-N)", opts)
 map("n", "<home>", util.smart_home, opts)
-map("n", "K", vim.lsp.buf.hover, opts)
 
 imap("<home>", "<c-o><home>")
 

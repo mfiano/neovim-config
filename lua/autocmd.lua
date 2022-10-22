@@ -1,4 +1,4 @@
-local util = require("util")
+local util = require("lib/util")
 local group = vim.api.nvim_create_augroup
 local group_opts = { clear = true }
 local cmd = vim.api.nvim_create_autocmd
@@ -7,7 +7,7 @@ local floaterm = function() return [[nnoremap <buffer> <localleader>; :execute '
 
 -- Common Lisp
 local commonlisp = group("ft_commonlisp", group_opts)
-cmd({"bufread", "bufnewfile"}, {
+cmd({ "bufread", "bufnewfile" }, {
   pattern = "*.asd,*.ros", command = [[setfiletype = lisp]], group = commonlisp
 })
 cmd("filetype", { pattern = "lisp", command = [[hi link lispKey Keyword]], group = commonlisp })
@@ -38,7 +38,7 @@ cmd("filetype", { pattern = "json", command = [[setl foldmethod=syntax]], group 
 
 -- Julia
 local julia = group("ft_julia", group_opts)
-cmd("bufwritepre", { pattern = "*.jl", callback = vim.lsp.buf.formatting_sync, group = julia })
+cmd("bufwritepre", { pattern = "*.jl", callback = vim.lsp.buf.format, group = julia })
 cmd("filetype", {
   pattern = "julia",
   command = [[setl sw=4 et tw=100]],
@@ -58,18 +58,23 @@ cmd("filetype", {
   command = floaterm() .. "--title=markdown --autoclose=0 " .. fn.expand('glow %:p') .. "'<cr>",
   group = markdown
 })
-cmd({"bufnewfile", "buffilepre", "bufread" }, {
+cmd({ "bufnewfile", "buffilepre", "bufread" }, {
   pattern = "*.md", command = [[setl filetype=markdown.pandoc foldlevel=1]], group = markdown
 })
 
 -- Rust
 local rust = group("ft_rust", group_opts)
+cmd("filetype", {
+  pattern = "rust",
+  callback = function() vim.keymap.set("n", ",r", ":RustRunnables<cr>") end,
+  group = rust
+})
 
 -- Vim
 local vim_options = group("vim_options", group_opts)
 cmd("vimleave", { command = [[set guicursor=a:hor25]], group = vim_options })
-cmd({"winleave", "insertenter"}, { command = [[set nocursorline]], group = vim_options })
-cmd({"winenter", "insertleave"}, { command = [[set cursorline]], group = vim_options })
+cmd({ "winleave", "insertenter" }, { command = [[set nocursorline]], group = vim_options })
+cmd({ "winenter", "insertleave" }, { command = [[set cursorline]], group = vim_options })
 cmd("vimresized", { command = [[wincmd =]], group = vim_options })
 cmd("termopen", { command = [[setl nonumber]], group = vim_options })
 cmd("insertenter", { command = [[set listchars-=trail:⌴]], group = vim_options })

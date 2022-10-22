@@ -1,5 +1,5 @@
 local cmp = require("cmp")
-local util = require("util")
+local util = require("lib/util")
 
 cmp.setup {
   snippet = {

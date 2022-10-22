@@ -1,32 +1,52 @@
-local util = require("util")
+local map = vim.keymap.set
+local nvim_lsp = require("lspconfig")
+
+local servers = { "bashls", "glslls", "texlab" }
+
+local flags = {
+  debounce_text_changes = 150
+}
+
+local function on_attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+  end
+  if client.server_capabilities.signatureHelpProvider then
+    require("lsp-overloads").setup(client, {})
+  end
+  local opts = { silent = true, buffer = true }
+  map("n", "K", vim.lsp.buf.hover, opts)
+  map("n", "gd", function() require("goto-preview").goto_preview_definition({}) end, opts)
+  map("n", "gi", vim.lsp.buf.implementation, opts)
+  map("n", "gr", function() require("goto-preview").goto_preview_references() end, opts)
+  map("n", "gt", vim.lsp.buf.type_definition, opts)
+end
+
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = flags
+  }
+end
 
 vim.diagnostic.config({
   virtual_text = true
 })
 
--- Bash
-require("lspconfig").bashls.setup({
-  on_attach = util.lsp_attach,
-})
-
--- GLSL
-require("lspconfig").glslls.setup({
-  on_attach = util.lsp_attach,
-})
-
 -- Julia
-require("lspconfig").julials.setup({
-  on_attach = util.lsp_attach,
+nvim_lsp.julials.setup({
+  on_attach = on_attach,
   on_new_config = function(new_config, _)
     local julia = vim.fn.expand("~/.data/julia/environments/nvim-lspconfig/bin/julia")
-    if require("lspconfig").util.path.is_file(julia) then
+    if nvim_lsp.util.path.is_file(julia) then
       new_config.cmd[1] = julia
     end
   end
 })
 
 -- Lua
-require("lspconfig").sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = { version = 'LuaJIT' },
@@ -36,8 +56,3 @@ require("lspconfig").sumneko_lua.setup {
     },
   },
 }
-
--- TeX
-require("lspconfig").texlab.setup({
-  on_attach = util.lsp_attach,
-})

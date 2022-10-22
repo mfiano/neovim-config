@@ -1,8 +1,6 @@
 local wk = require("which-key")
 local visual_map = {}
 local normal_map = {
-  gd = { "go to definition" },
-  gr = { "go to references" },
   ["<leader>"] = {
     ["<leader>"] = { ":Legendary keymaps<cr>", "legend" },
     ["'"] = { ":Telescope resume<cr>", "resume search"},
