@@ -57,7 +57,9 @@ packer.startup(function(use)
   -- bufdelete
   use { "famiu/bufdelete.nvim", cmd = { "Bwipeout", "Bwipeout!" } }
   -- Comment
-  use { "numToStr/Comment.nvim", config = function() require("Comment").setup() end }
+  use { "numToStr/Comment.nvim", config = function() require("Comment").setup( { mappings = { extra = false } }) end }
+  -- eyeliner
+  use { "jinh0/eyeliner.nvim", config = util.get_config("eyeliner") }
   -- feline
   use {
     "feline-nvim/feline.nvim",
@@ -139,6 +141,12 @@ packer.startup(function(use)
     },
     config = util.get_config("nvim-cmp")
   }
+  -- nvim-dap
+  use { "mfussenegger/nvim-dap", config = util.get_config("nvim-dap") }
+  -- nvim-dap-ui
+  use { "rcarriga/nvim-dap-ui", requires = "mfussenegger/nvim-dap", config = util.get_config("nvim-dap-ui") }
+  -- nvim-dap-virtual-text
+  use { "theHamsta/nvim-dap-virtual-text", config = function() require("nvim-dap-virtual-text").setup {} end }
   -- nvim-lastplace
   use { "ethanholz/nvim-lastplace", config = function() require("nvim-lastplace").setup() end }
   -- nvim-lspconfig
@@ -175,14 +183,6 @@ packer.startup(function(use)
   use "wbthomason/packer.nvim"
   -- project
   use { "ahmedkhalf/project.nvim", config = function() require("project_nvim").setup() end }
-  -- quick-scope
-  use { "unblevable/quick-scope", config = util.get_config("quick-scope") }
-  -- rust-tools
-  use {
-    "simrat39/rust-tools.nvim",
-    requires = { "neovim/nvim-lspconfig" },
-    config = util.get_config("rust-tools")
-  }
   -- tidy
   use { "mcauley-penney/tidy.nvim", config = function() require("tidy").setup() end }
   -- todo-comments
@@ -205,7 +205,7 @@ packer.startup(function(use)
   use { "gbprod/yanky.nvim", config = util.get_config("yanky") }
 
   -- TODO: Replace with Lua alternatives
-  use "puremourning/vimspector"
+  use { "unblevable/quick-scope", config = util.get_config("quick-scope") }
   use "ron-rs/ron.vim"
   use "wellle/targets.vim"
   use "tpope/vim-repeat"
@@ -215,7 +215,7 @@ packer.startup(function(use)
   use "alvan/vim-closetag"
   use "tpope/vim-eunuch"
   use "neomutt/neomutt.vim"
-  use { "voldikss/vim-floaterm", config = util.get_config("floaterm"), cmd = "FloatermNew" }
+  use { "voldikss/vim-floaterm", config = util.get_config("floaterm") }
 
   -- TODO: Try these out
   -- use "frabjous/knap"

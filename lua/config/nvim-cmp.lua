@@ -8,10 +8,6 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert({
     ["<c-pageup>"] = cmp.mapping.scroll_docs(-4),
     ["<c-pagedown>"] = cmp.mapping.scroll_docs(4),
-    ["<cr>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true
-    },
     ["<tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()

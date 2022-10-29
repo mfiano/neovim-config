@@ -31,6 +31,7 @@ opt.matchpairs = opt.matchpairs + "<:>"
 opt.matchtime = 3
 opt.modelines = 0
 opt.mouse = "a"
+opt.mousemodel = "extend"
 opt.number = true
 opt.pumheight = 20
 opt.scrolloff = 3
@@ -77,11 +78,11 @@ vim.g.clipboard = {
   name = "xsel_override",
   copy = {
     ["+"] = { "xsel", "--input", "--clipboard" },
-    ["*"] = { "xsel", "--input", "--primary" },
+    ["*"] = { "xsel", "--input", "--primary" }
   },
   paste = {
     ["+"] = { "xsel", "--output", "--clipboard" },
-    ["*"] = { "xsel", "--output", "--primary" },
+    ["*"] = { "xsel", "--output", "--primary" }
   },
-  cache_enabled = true,
+  cache_enabled = true
 }

@@ -63,12 +63,7 @@ cmd({ "bufnewfile", "buffilepre", "bufread" }, {
 })
 
 -- Rust
-local rust = group("ft_rust", group_opts)
-cmd("filetype", {
-  pattern = "rust",
-  callback = function() vim.keymap.set("n", ",r", ":RustRunnables<cr>") end,
-  group = rust
-})
+-- local rust = group("ft_rust", group_opts)
 
 -- Vim
 local vim_options = group("vim_options", group_opts)
