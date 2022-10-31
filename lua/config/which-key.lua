@@ -39,6 +39,7 @@ local normal_map = {
     },
     l = {
       name = "lsp",
+      d = { ":TroubleToggle<cr>", "toggle diagnostics panel" },
       o = { ":AerialToggle<cr>", "code outline" },
       r = { ":LspRestart<cr>", "restart LSP" },
       s = { ":LspStart<cr>", "start LSP" },
