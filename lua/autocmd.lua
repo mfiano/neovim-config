@@ -58,9 +58,6 @@ cmd("filetype", {
   group = markdown
 })
 
--- Rust
--- local rust = group("ft_rust", group_opts)
-
 -- Vim
 local vim_options = group("vim_options", group_opts)
 cmd("vimleave", { command = [[set guicursor=a:hor25]], group = vim_options })
