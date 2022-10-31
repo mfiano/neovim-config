@@ -1,9 +1,14 @@
 local util = require("lib/util")
+
 local group = vim.api.nvim_create_augroup
 local group_opts = { clear = true }
 local cmd = vim.api.nvim_create_autocmd
 local fn = vim.fn
 local floaterm = function() return [[nnoremap <buffer> <localleader>; :execute ':FloatermNew ]] end
+
+-- All filetypes
+local all = group("ft_all", group_opts)
+cmd("filetype", { pattern = "*", command = [[set fo+=qj fo-=rol]], group = all })
 
 -- Common Lisp
 local commonlisp = group("ft_commonlisp", group_opts)
@@ -52,14 +57,11 @@ cmd("filetype", {
 
 -- Markdown
 local markdown = group("ft_markdown", group_opts)
-cmd("filetype", { pattern = "markdown.pandoc", command = [[setl autowriteall]], group = markdown })
+cmd("filetype", { pattern = "markdown", command = [[setl autowriteall fo+=tw2]], group = markdown })
 cmd("filetype", {
-  pattern = "markdown.pandoc",
+  pattern = "markdown",
   command = floaterm() .. "--title=markdown --autoclose=0 " .. fn.expand('glow %:p') .. "'<cr>",
   group = markdown
-})
-cmd({ "bufnewfile", "buffilepre", "bufread" }, {
-  pattern = "*.md", command = [[setl filetype=markdown.pandoc foldlevel=1]], group = markdown
 })
 
 -- Rust

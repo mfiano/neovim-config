@@ -113,7 +113,7 @@ packer.startup(function(use)
   -- mkdir
   use "jghauser/mkdir.nvim"
   -- mkdnflow
-  use { "jakewvincent/mkdnflow.nvim", config = util.get_config("mkdnflow"), ft = "markdown.pandoc" }
+  use { "jakewvincent/mkdnflow.nvim", config = util.get_config("mkdnflow"), ft = "markdown" }
   -- nvim-autopairs
   use { "windwp/nvim-autopairs", config = util.get_config("nvim-autopairs") }
   -- nvim-bqf
@@ -214,7 +214,6 @@ packer.startup(function(use)
   use "elzr/vim-json"
   use "alvan/vim-closetag"
   use "tpope/vim-eunuch"
-  use "neomutt/neomutt.vim"
   use { "voldikss/vim-floaterm", config = util.get_config("floaterm") }
 
   -- TODO: Try these out
