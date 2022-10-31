@@ -27,8 +27,11 @@ require("nvim-treesitter.configs").setup {
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting=false,
+    disable = {
+      "julia"
+    },
+    additional_vim_regex_highlighting = false,
   },
-  ident = { enable = true },
+  indent = { enable = true },
   autopairs = { enable = true }
 }

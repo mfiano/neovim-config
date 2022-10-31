@@ -205,6 +205,7 @@ packer.startup(function(use)
   use { "gbprod/yanky.nvim", config = util.get_config("yanky") }
 
   -- TODO: Replace with Lua alternatives
+  use { "JuliaEditorSupport/julia-vim", config = util.get_config("julia-vim") }
   use { "unblevable/quick-scope", config = util.get_config("quick-scope") }
   use "ron-rs/ron.vim"
   use "wellle/targets.vim"
