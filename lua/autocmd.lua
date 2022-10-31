@@ -3,8 +3,6 @@ local util = require("lib/util")
 local group = vim.api.nvim_create_augroup
 local group_opts = { clear = true }
 local cmd = vim.api.nvim_create_autocmd
-local fn = vim.fn
-local floaterm = function() return [[nnoremap <buffer> <localleader>; :execute ':FloatermNew ]] end
 
 -- All filetypes
 local all = group("ft_all", group_opts)
@@ -44,14 +42,10 @@ cmd("filetype", { pattern = "json", command = [[setl foldmethod=syntax]], group 
 -- Julia
 local julia = group("ft_julia", group_opts)
 cmd("bufwritepre", { pattern = "*.jl", callback = vim.lsp.buf.format, group = julia })
+cmd("filetype", { pattern = "julia", command = [[setl sw=4 et tw=100]], group = julia })
 cmd("filetype", {
   pattern = "julia",
-  command = [[setl sw=4 et tw=100]],
-  group = julia
-})
-cmd("filetype", {
-  pattern = "julia",
-  command = floaterm() .. "--title=julia  " .. util.julia_repl_cmd() .. "'<cr>",
+  callback = util.bind_term_cmd("<localleader>;", "julia", "direnv exec . jl"),
   group = julia
 })
 
@@ -60,7 +54,7 @@ local markdown = group("ft_markdown", group_opts)
 cmd("filetype", { pattern = "markdown", command = [[setl autowriteall fo+=tw2]], group = markdown })
 cmd("filetype", {
   pattern = "markdown",
-  command = floaterm() .. "--title=markdown --autoclose=0 " .. fn.expand('glow %:p') .. "'<cr>",
+  callback = util.bind_term_cmd("<localleader>;", "markdown", "glow %s"),
   group = markdown
 })
 

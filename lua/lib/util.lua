@@ -14,22 +14,25 @@ function M.smart_home()
   return (vim.opt.wrap == true and fn.wincol() > 1) and cmd("normal g^") or cmd("normal ^")
 end
 
-function M.julia_repl_cmd()
-  local project_name = fn.split(fn.expand('%:p'), "/")[5]
-  if project_name then
-    return "direnv exec ~/projects/Julia/" .. project_name .. " jl"
-  else
-    return ""
-  end
-end
-
 function M.check_back_space()
-  local col = vim.fn.col '.' - 1
-  return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
+  local col = fn.col '.' - 1
+  return col == 0 or fn.getline('.'):sub(col, col):match '%s' ~= nil
 end
 
 function M.get_config(name)
-  return string.format('require("config/%s")', name)
+  return string.format([[require("config/%s")]], name)
+end
+
+function M.bind_term_cmd(key, title, command, autoclose)
+  local term_cmd = "FloatermNew --title=%s --autoclose=%s %s"
+  autoclose = autoclose and 1 or 0
+  return function()
+    vim.keymap.set("n", key, function()
+      local path = fn.expand("%:p")
+      vim.cmd(string.format(term_cmd, title, autoclose, string.gsub(command, "%%[s]", path)))
+    end,
+    { buffer = true })
+  end
 end
 
 return M
