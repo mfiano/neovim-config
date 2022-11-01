@@ -51,11 +51,18 @@ cmd("filetype", {
 
 -- Markdown
 local markdown = group("ft_markdown", group_opts)
-cmd("filetype", { pattern = "markdown", command = [[setl autowriteall fo+=tw2]], group = markdown })
 cmd("filetype", {
-  pattern = "markdown",
+  pattern = "markdown.pandoc",
+  command = [[setl autowriteall]],
+  group = markdown
+})
+cmd("filetype", {
+  pattern = "markdown.pandoc",
   callback = util.bind_term_cmd("<localleader>;", "markdown", "glow %s"),
   group = markdown
+})
+cmd({ "bufnewfile", "buffilepre", "bufread" }, {
+  pattern = "*.md", command = [[setl filetype=markdown.pandoc foldlevel=1]], group = markdown
 })
 
 -- Vim
