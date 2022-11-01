@@ -10,7 +10,7 @@ require("mkdnflow").setup{
   silent = true,
   links = {
     style = "markdown",
-    conceal = false,
+    conceal = true,
     implicit_extension = "md"
   },
   mappings = {
