@@ -30,7 +30,6 @@ cmp.setup {
     { name = "omni" },
     { name = "path" },
     { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
     { name = "latex_symbols" },
     { name = "nvim_lua" }
   }
