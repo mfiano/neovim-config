@@ -39,9 +39,6 @@ imap("<home>", "<c-o><home>")
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
-map("x", "<a-up>", "'<-2<cr>gv-gv", opts)
-map("x", "<a-down>", "'>+1<cr>gv-gv", opts)
-
 map("t", "\\\\", [[<c-\><c-n>]], opts)
 
 map({"n", "v"}, "<tab>", "za", opts)

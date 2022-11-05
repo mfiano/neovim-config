@@ -10,6 +10,7 @@ opt.cmdheight = 1
 opt.colorcolumn = "+1"
 opt.complete = opt.complete + "k"
 opt.completeopt = { "noinsert", "menuone", "noselect" }
+opt.conceallevel = 2
 opt.cursorline = true
 opt.dictionary = "/usr/share/dict/words"
 opt.directory = fn.stdpath("data") .. "/swap"
